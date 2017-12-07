@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BorThesis</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_register">สมัครสมาชิก</string>
+    <string name="dialog_title">แจ้งเตือน</string>
+    <string name="dialog_message">ยืนยันการยกเลิกการสมัครสมาชิก</string>
+    <string name="dialog_text_btn_ok">ตกลง</string>
+    <string name="dialog_text_btn_cancle">ยกเลิก</string>
+</resources>
