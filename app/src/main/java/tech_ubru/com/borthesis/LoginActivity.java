@@ -1,9 +1,12 @@
 package tech_ubru.com.borthesis;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -11,6 +14,7 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
 
     CheckBox cb_showpass;
+    Button btn_register;
     EditText et_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
         cb_showpass = findViewById(R.id.cb_showpass);
         et_password = findViewById(R.id.et_password);
+        btn_register = findViewById(R.id.btn_register);
 
         cb_showpass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -33,6 +38,13 @@ public class LoginActivity extends AppCompatActivity {
                     et_password.setTransformationMethod(new PasswordTransformationMethod());
                     et_password.setSelection(et_password.getText().length());
                 }
+            }
+        });
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }

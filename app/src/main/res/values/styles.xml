@@ -12,18 +12,25 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="edittext_style">
         <item name="android:textColorHint">@color/color_grey</item>
+        <item name="android:layout_height">@dimen/et_nomal</item>
+        <item name="android:textColor">@color/color_grey</item>
         <item name="android:textSize">16dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:drawablePadding">4dp</item>
         <item name="android:background">@drawable/edittextstyle_login</item>
 
     </style>
+
     <style name="btn_outline_style">
 
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:background">@drawable/btn_outline_selector</item>
 
     </style>
+
     <style name="btn_style">
 
         <item name="android:textColor">@android:color/white</item>
@@ -32,5 +39,9 @@
     </style>
 
 
+    <dimen name="et_nomal">45dp</dimen>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

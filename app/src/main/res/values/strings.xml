@@ -9,4 +9,10 @@
     <string name="dialog_message">ยืนยันการยกเลิกการสมัครสมาชิก</string>
     <string name="dialog_text_btn_ok">ตกลง</string>
     <string name="dialog_text_btn_cancle">ยกเลิก</string>
+    <string name="title_activity_main_app">MainAppActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
