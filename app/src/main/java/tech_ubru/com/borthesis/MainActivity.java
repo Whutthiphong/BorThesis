@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
         StringRequest request = new StringRequest(Request.Method.POST,URLService.getUrl()+service_name, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String response) { 
                 dialog.dismiss();
                 tv_response.setText(response.toString());
                 Log.e("GET_ALL_BOOK_res" ,response.toString());
