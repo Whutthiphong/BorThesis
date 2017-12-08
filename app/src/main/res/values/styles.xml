@@ -23,11 +23,23 @@
         <item name="android:background">@drawable/edittextstyle_login</item>
 
     </style>
+    <style name="btn_menu_usersetting" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">@color/color_light_black</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:gravity">left</item>
+
+    </style>
 
     <style name="btn_outline_style">
 
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:background">@drawable/btn_outline_selector</item>
+
+    </style>
+    <style name="btn_outline_style_white">
+
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/btn_outline_selector_white</item>
 
     </style>
 

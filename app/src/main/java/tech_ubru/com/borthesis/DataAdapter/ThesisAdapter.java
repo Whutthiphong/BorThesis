@@ -39,7 +39,7 @@ public class ThesisAdapter extends RecyclerView.Adapter<ThesisAdapter.ViewHolder
             holder.tv_thesis_name.setText(item.th_name);
             holder.tv_major.setText(item.major);
             String txt_status  ;
-            if(item.status!=null&&item.status.trim().equalsIgnoreCase("1")) {
+            if(item.status==null) {
                 holder.tv_status.setTextColor(Color.parseColor("#75be51"));
                 txt_status = "พร้อมใช้งาน";
             }else {

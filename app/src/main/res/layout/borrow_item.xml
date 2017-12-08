@@ -7,52 +7,72 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/tv_thesis_name"
-        android:layout_width="0dp"
+        android:id="@+id/tv_thesis_name_borow"
+        android:layout_width="395dp"
         android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="@color/color_light_black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_major"
+        android:id="@+id/tv_date_borrow"
         android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="@color/color_light_grey"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_status"
+        app:layout_constraintEnd_toStartOf="@+id/tv_status_borrow"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_thesis_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_thesis_name_borow" />
+
 
     <TextView
-        android:id="@+id/tv_status"
+        android:id="@+id/tv_status_borrow"
         android:layout_width="0dp"
-        android:layout_height="18dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="19dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="@color/color_light_grey"
+        app:layout_constraintEnd_toStartOf="@+id/tv_status_return"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1.2"
+        app:layout_constraintStart_toEndOf="@+id/tv_date_borrow"
+        app:layout_constraintTop_toBottomOf="@+id/tv_thesis_name_borow" />
+
+    <TextView
+        android:id="@+id/tv_status_return"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="right"
         android:text="TextView"
         android:textColor="@color/color_light_grey"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_major"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_weight="1.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_major" />
+        app:layout_constraintHorizontal_weight="1.2"
+        app:layout_constraintStart_toEndOf="@+id/tv_status_borrow"
+        app:layout_constraintTop_toBottomOf="@+id/tv_thesis_name_borow" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1sp"
+
         android:background="@color/color_grey"
-        app:layout_constraintBottom_toBottomOf="parent"></View>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
