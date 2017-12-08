@@ -13,10 +13,10 @@ import tech_ubru.com.borthesis.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserSettingFragment extends Fragment {
+public class BorrowThesisTransectionFragment extends Fragment {
 
 
-    public UserSettingFragment() {
+    public BorrowThesisTransectionFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +27,7 @@ public class UserSettingFragment extends Fragment {
         // Inflate the layout for this fragment
         MainActivity activity = (MainActivity) getActivity();
         activity.getSupportActionBar().show();
-        return inflater.inflate(R.layout.fragment_user_setting, container, false);
+        return inflater.inflate(R.layout.fragment_borrow_thesis_transection, container, false);
     }
 
 }

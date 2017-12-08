@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -15,7 +14,10 @@ import com.kosalgeek.android.json.JsonConverter;
 import java.util.ArrayList;
 
 import tech_ubru.com.borthesis.ModelItem.GET_ALL_BOOK;
+import tech_ubru.com.borthesis.MyFragments.BorrowThesisTransectionFragment;
 import tech_ubru.com.borthesis.MyFragments.MainAppFragment;
+import tech_ubru.com.borthesis.MyFragments.SearchThesisFragment;
+import tech_ubru.com.borthesis.MyFragments.UserSettingFragment;
 
 public class MainActivity extends AppCompatActivity  {
     TextView tv_response;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity  {
         String service_name = "get_all_book_detail.php";
         bottomNavigation =  findViewById(R.id.myNavigation_ID);
         createNavItem();
+
 //
 //        MainAppFragment home = new MainAppFragment();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();
@@ -63,15 +66,23 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
                 if(position ==0){
-                    Toast.makeText(MainActivity.this, "GGGG", Toast.LENGTH_SHORT).show();
                     MainAppFragment home = new MainAppFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();
                     return  true;
 
                 }else if(position==1){
-                    Toast.makeText(MainActivity.this, "AAAAAAAAAA", Toast.LENGTH_SHORT).show();
-//                    SearchThesisFragment search = new SearchThesisFragment();
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.content_id,search).commit();
+                    SearchThesisFragment search = new SearchThesisFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_id,search).commit();
+                    return  true;
+
+                }else if(position==2){
+                    BorrowThesisTransectionFragment borrow = new BorrowThesisTransectionFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_id,borrow).commit();
+                    return  true;
+
+                }else if(position==3){
+                    UserSettingFragment user_setting = new UserSettingFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_id,user_setting).commit();
                     return  true;
 
                 }
@@ -113,21 +124,24 @@ public class MainActivity extends AppCompatActivity  {
 
     private void createNavItem(){
         //Create Item
-        AHBottomNavigationItem cremeItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_search), R.drawable.search);
-        AHBottomNavigationItem flagItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_mark), R.drawable.star);
-        AHBottomNavigationItem mapItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_home), R.drawable.map);
+        AHBottomNavigationItem home = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_main), R.drawable.ic_account_balance_black_24dp);
+        AHBottomNavigationItem search = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_search), R.drawable.search);
+        AHBottomNavigationItem trans = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_trans), R.drawable.ic_format_list_bulleted_black_24dp);
         AHBottomNavigationItem settingItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_setting), R.drawable.setting);
 
         //Add Item
 
-        bottomNavigation.addItem(mapItem);
-        bottomNavigation.addItem(cremeItem);
-        bottomNavigation.addItem(flagItem);
+        bottomNavigation.addItem(home);
+        bottomNavigation.addItem(search);
+        bottomNavigation.addItem(trans);
         bottomNavigation.addItem(settingItem);
 
         //Set currect Item
         bottomNavigation.setAccentColor(Color.parseColor("#04AEDA"));
         bottomNavigation.setCurrentItem(0);
+
+        MainAppFragment home_fagment = new MainAppFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home_fagment).commit();
 
     }
 

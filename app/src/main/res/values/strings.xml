@@ -15,11 +15,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="bottombar_search">asd</string>
-    <string name="bottombar_mark">asdsa</string>
-    <string name="bottombar_home">asdasd</string>
-    <string name="bottombar_setting">asd</string>
+    <string name="bottombar_main">หน้าหลัก</string>
+    <string name="bottombar_search">ค้นหา</string>
+    <string name="bottombar_trans">การทำรายการ</string>
+    <string name="bottombar_setting">ตั้งค่า</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_search">ค้นหา</string>
+    <string name="menu_filter">ตัวกรอง</string>
 </resources>

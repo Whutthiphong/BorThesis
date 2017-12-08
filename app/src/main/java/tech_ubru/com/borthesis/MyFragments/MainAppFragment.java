@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import tech_ubru.com.borthesis.MainActivity;
 import tech_ubru.com.borthesis.R;
 
 public class MainAppFragment extends Fragment {
@@ -17,7 +18,8 @@ public class MainAppFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_app,container,false);
-
+        MainActivity activity = (MainActivity) getActivity();
+        activity.getSupportActionBar().hide();
         return rootView;
     }
 
