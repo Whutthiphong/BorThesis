@@ -1,61 +1,88 @@
 package tech_ubru.com.borthesis;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.kosalgeek.android.json.JsonConverter;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import tech_ubru.com.borthesis.ModelItem.GET_ALL_BOOK;
+import tech_ubru.com.borthesis.MyFragments.MainAppFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     TextView tv_response;
+
+    AHBottomNavigation bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String service_name = "get_all_book_detail.php";
-        final ProgressDialog dialog ;
-        tv_response = (TextView) findViewById(R.id.tv_response);
-        dialog = new ProgressDialog(MainActivity.this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Loading...");
-        dialog.show();
-        StringRequest request = new StringRequest(Request.Method.POST,URLService.getUrl()+service_name, new Response.Listener<String>() {
+        bottomNavigation =  findViewById(R.id.myNavigation_ID);
+        createNavItem();
+//
+//        MainAppFragment home = new MainAppFragment();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();
+//        final ProgressDialog dialog ;
+//        dialog = new ProgressDialog(MainActivity.this);
+//        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        dialog.setMessage("Loading...");
+//        dialog.show();
+
+//        StringRequest request = new StringRequest(Request.Method.POST,URLService.getUrl()+service_name, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                dialog.dismiss();
+//                tv_response.setText(response.toString());
+//                Log.e("GET_ALL_BOOK_res" ,response.toString());
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                Log.e("GET_ALL_BOOK" ,error.toString());
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                return super.getParams();
+//            }
+//        };
+//
+//        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+
+        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
-            public void onResponse(String response) { 
-                dialog.dismiss();
-                tv_response.setText(response.toString());
-                Log.e("GET_ALL_BOOK_res" ,response.toString());
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                if(position ==0){
+                    Toast.makeText(MainActivity.this, "GGGG", Toast.LENGTH_SHORT).show();
+                    MainAppFragment home = new MainAppFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();
+                    return  true;
+
+                }else if(position==1){
+                    Toast.makeText(MainActivity.this, "AAAAAAAAAA", Toast.LENGTH_SHORT).show();
+//                    SearchThesisFragment search = new SearchThesisFragment();
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.content_id,search).commit();
+                    return  true;
+
+                }
+                return wasSelected;
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.e("GET_ALL_BOOK" ,error.toString());
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                return super.getParams();
-            }
-        };
-
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
-
-
+        });
     }
+
+
+
+
     private  class test_volle extends AsyncTask<Void,Void,String>{
         ProgressDialog dialog ;
         private String response_new;
@@ -84,5 +111,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void createNavItem(){
+        //Create Item
+        AHBottomNavigationItem cremeItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_search), R.drawable.search);
+        AHBottomNavigationItem flagItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_mark), R.drawable.star);
+        AHBottomNavigationItem mapItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_home), R.drawable.map);
+        AHBottomNavigationItem settingItem = new AHBottomNavigationItem(getResources().getString(R.string.bottombar_setting), R.drawable.setting);
+
+        //Add Item
+
+        bottomNavigation.addItem(mapItem);
+        bottomNavigation.addItem(cremeItem);
+        bottomNavigation.addItem(flagItem);
+        bottomNavigation.addItem(settingItem);
+
+        //Set currect Item
+        bottomNavigation.setAccentColor(Color.parseColor("#04AEDA"));
+        bottomNavigation.setCurrentItem(0);
+
+    }
 
 }
