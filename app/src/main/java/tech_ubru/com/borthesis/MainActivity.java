@@ -1,6 +1,9 @@
 package tech_ubru.com.borthesis;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import com.kosalgeek.android.json.JsonConverter;
 
 import java.util.ArrayList;
 
+import tech_ubru.com.borthesis.AppConfig.ConfigData;
 import tech_ubru.com.borthesis.ModelItem.GET_ALL_BOOK;
 import tech_ubru.com.borthesis.MyFragments.BorrowThesisTransectionFragment;
 import tech_ubru.com.borthesis.MyFragments.MainAppFragment;
@@ -23,6 +27,8 @@ public class MainActivity extends AppCompatActivity  {
     TextView tv_response;
 
     AHBottomNavigation bottomNavigation;
+    private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,11 @@ public class MainActivity extends AppCompatActivity  {
         bottomNavigation =  findViewById(R.id.myNavigation_ID);
         createNavItem();
 
+        sp = getSharedPreferences(ConfigData.USER_TAG_SHARE, Context.MODE_PRIVATE);
+        if(!sp.getString("LOGIN_STAT","").equalsIgnoreCase("success")){
+            finish();
+            startActivity(new Intent(this,LoginActivity.class));
+        }
 //
 //        MainAppFragment home = new MainAppFragment();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();

@@ -19,6 +19,8 @@ public class BorrowItem implements Serializable {
     public String status_borrow;
     public String status_return;
     public String th_name;
+    public String name_mem;
+    public String lastname_mem;
 }
 
 

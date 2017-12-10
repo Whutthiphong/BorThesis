@@ -11,4 +11,5 @@
     <color name="color_light_black">#535353</color>
     <color name="not_ready_status">#ff5c2a</color>
     <color name="ready_status">#75be51</color>
+    <color name="color_warning">#FFFFA82D</color>
 </resources>

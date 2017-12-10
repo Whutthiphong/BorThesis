@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_borrow_detail"
+        android:icon="@drawable/ic_insert_drive_file_black_24dp"
+        android:title="@string/menu_filter"
+        android:orderInCategory="100"
+        appcompat:showAsAction="always"/>
+
+
+</menu>

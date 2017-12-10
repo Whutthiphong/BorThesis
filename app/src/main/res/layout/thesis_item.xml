@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/cons_thesis"
     android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="81dp">
 
@@ -21,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_major"
+        android:id="@+id/tv_detail_major"
         android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginBottom="8dp"
@@ -34,7 +35,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_thesis_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_thesis_name"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/tv_status"
@@ -44,11 +46,12 @@
         android:gravity="right"
         android:text="TextView"
         android:textColor="@color/color_light_grey"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_major"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_detail_major"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_major" />
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_major"
+        android:layout_marginRight="8dp" />
 
     <View
         android:layout_width="match_parent"

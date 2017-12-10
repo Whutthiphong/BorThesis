@@ -1,4 +1,4 @@
-package tech_ubru.com.borthesis;
+package tech_ubru.com.borthesis.AppConfig;
 
 /**
  * Created by wutthiphong.thu on 6/12/2560.
