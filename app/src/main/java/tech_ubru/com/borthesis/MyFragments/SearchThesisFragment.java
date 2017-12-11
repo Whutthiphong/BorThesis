@@ -2,6 +2,8 @@ package tech_ubru.com.borthesis.MyFragments;
 
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,13 +26,12 @@ import com.kosalgeek.android.json.JsonConverter;
 import java.util.ArrayList;
 import java.util.Map;
 
+import tech_ubru.com.borthesis.AppConfig.URLService;
 import tech_ubru.com.borthesis.DataAdapter.ThesisAdapter;
-import tech_ubru.com.borthesis.Details.ThesisDetail;
 import tech_ubru.com.borthesis.MainActivity;
 import tech_ubru.com.borthesis.ModelItem.GET_ALL_BOOK;
 import tech_ubru.com.borthesis.MySingleton;
 import tech_ubru.com.borthesis.R;
-import tech_ubru.com.borthesis.AppConfig.URLService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +55,8 @@ public class SearchThesisFragment extends Fragment {
         // Inflate the layout for this fragment
         View  rootView = inflater.inflate(R.layout.fragment_search_thesis, container, false);
         MainActivity activity = (MainActivity) getActivity();
+
+        activity.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#04AEDA")));
         rv_all_thesis =rootView.findViewById(R.id.rv_all_thesis);
         activity.getSupportActionBar().show();
         setHasOptionsMenu(true);

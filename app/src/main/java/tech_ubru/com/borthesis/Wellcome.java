@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Wellcome extends AppCompatActivity {
-    private static int SPLAH_TIME_OUT = 0;
+    private static int SPLAH_TIME_OUT = 4500;
     ImageView imv_book,imv_ubru,imv_itech;
     TextView tv_welcome;
     @Override
@@ -31,7 +31,6 @@ public class Wellcome extends AppCompatActivity {
             public void run() {
                 Intent mainIntent = new Intent(Wellcome.this,MainActivity.class);
                 startActivity(mainIntent);
-
                 finish();
             }
         },SPLAH_TIME_OUT);

@@ -198,9 +198,7 @@ public class ThesisDetail extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 dialog.dismiss();
-                                Log.e("DATA",item.thesis_id.toString()+"<<"+sp.getString("pk_mem","")+">>"+et_amount_borrow.getText().toString());
-                                Toast.makeText(ThesisDetail.this, item.thesis_id.toString()+"<<"+sp.getString("pk_mem","")+">>"+et_amount_borrow.getText().toString(), Toast.LENGTH_SHORT).show();
-                                final ProgressDialog pDialog = new ProgressDialog(ThesisDetail.this);
+                                 final ProgressDialog pDialog = new ProgressDialog(ThesisDetail.this);
                                 pDialog.setCancelable(false);
                                 pDialog.setMessage("กำลังบันทึกข้อมูล...");
                                 pDialog.show();
@@ -261,7 +259,7 @@ public class ThesisDetail extends AppCompatActivity {
                                         Map<String, String> param = new HashMap<String, String>();
                                         //input params to webservice
                                         param.put("pkthesis_borrow",pkthesis_borrow );
-                                        param.put("pkstd_borrow",sp.getString("pk_mem","") );
+                                        param.put("pkstd_borrow",sp.getString("pimerykey","") );
                                         param.put("num_borrow",et_amount_borrow.getText().toString() );
                                         return param;
                                     }

@@ -23,6 +23,18 @@
         <item name="android:background">@drawable/edittextstyle_login</item>
 
     </style>
+    <style name="label_style">
+        <item name="android:layout_height">@dimen/et_nomal</item>
+        <item name="android:textColor">@color/color_light_black</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:drawablePadding">4dp</item>
+
+    </style>
+    <style name="panel_style">
+        <item name="android:background">@drawable/panel_default</item>
+
+    </style>
     <style name="text_detail_style">
 
         <item name="android:textColor">@color/color_grey</item>

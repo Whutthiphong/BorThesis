@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BorThesis</string>
+    <string name="app_name">แอปพลิเคชันการยืม-คืนหนังสือภาคนิพนธ์</string>
 
     <string name="title_activity_login">LoginActivity</string>
     <string name="dummy_button">Dummy Button</string>

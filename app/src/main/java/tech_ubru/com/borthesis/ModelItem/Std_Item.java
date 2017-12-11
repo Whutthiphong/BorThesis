@@ -7,12 +7,14 @@ import java.io.Serializable;
  */
 
 public class Std_Item implements Serializable {
-    public String pk_mem;
-    public String prefix_mem;
-    public String name_mem;
-    public String lastname_mem;
+    public String pimerykey;
+    public String prefix;
+    public String name;
+    public String lastname;
     public String username_mem;
     public String tel_mem;
-    public String email_mem;
+    public String email;
+    public String id_student;
     public String status_mem;
+    public String status_register;
 }

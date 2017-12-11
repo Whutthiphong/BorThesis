@@ -4,6 +4,8 @@ package tech_ubru.com.borthesis.MyFragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,6 +62,7 @@ public class BorrowThesisTransectionFragment extends Fragment {
         sp = getContext().getSharedPreferences(ConfigData.USER_TAG_SHARE, Context.MODE_PRIVATE);
         editor = sp.edit();
         activity.getSupportActionBar().show();
+        activity.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8c19ff")));
         rv_borrow = rootView.findViewById(R.id.rv_borrow);
         UpdateData();
         return rootView;
@@ -91,7 +94,7 @@ public class BorrowThesisTransectionFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("pkstd_borrow",sp.getString("pk_mem","") );
+                params.put("pkstd_borrow",sp.getString("pimerykey","") );
                 return params;
             }
         };

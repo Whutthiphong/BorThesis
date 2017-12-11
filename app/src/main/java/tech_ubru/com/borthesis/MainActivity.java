@@ -1,5 +1,6 @@
 package tech_ubru.com.borthesis;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +26,7 @@ import tech_ubru.com.borthesis.MyFragments.UserSettingFragment;
 
 public class MainActivity extends AppCompatActivity  {
     TextView tv_response;
-
+    ActionBar bar;
     AHBottomNavigation bottomNavigation;
     private SharedPreferences sp;
 
@@ -35,43 +36,15 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         String service_name = "get_all_book_detail.php";
         bottomNavigation =  findViewById(R.id.myNavigation_ID);
-        createNavItem();
+
+
+          createNavItem();
 
         sp = getSharedPreferences(ConfigData.USER_TAG_SHARE, Context.MODE_PRIVATE);
         if(!sp.getString("LOGIN_STAT","").equalsIgnoreCase("success")){
             finish();
             startActivity(new Intent(this,LoginActivity.class));
         }
-//
-//        MainAppFragment home = new MainAppFragment();
-//        getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();
-//        final ProgressDialog dialog ;
-//        dialog = new ProgressDialog(MainActivity.this);
-//        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//        dialog.setMessage("Loading...");
-//        dialog.show();
-
-//        StringRequest request = new StringRequest(Request.Method.POST,URLService.getUrl()+service_name, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                dialog.dismiss();
-//                tv_response.setText(response.toString());
-//                Log.e("GET_ALL_BOOK_res" ,response.toString());
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//                Log.e("GET_ALL_BOOK" ,error.toString());
-//            }
-//        }){
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                return super.getParams();
-//            }
-//        };
-//
-//        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
@@ -79,21 +52,26 @@ public class MainActivity extends AppCompatActivity  {
                 if(position ==0){
                     MainAppFragment home = new MainAppFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_id,home).commit();
+
+                    bottomNavigation.setAccentColor(Color.parseColor("#ff9000"));
                     return  true;
 
                 }else if(position==1){
                     SearchThesisFragment search = new SearchThesisFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_id,search).commit();
+                    bottomNavigation.setAccentColor(Color.parseColor("#04AEDA"));
                     return  true;
 
                 }else if(position==2){
                     BorrowThesisTransectionFragment borrow = new BorrowThesisTransectionFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_id,borrow).commit();
+                    bottomNavigation.setAccentColor(Color.parseColor("#8c19ff"));
                     return  true;
 
                 }else if(position==3){
                     UserSettingFragment user_setting = new UserSettingFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_id,user_setting).commit();
+                    bottomNavigation.setAccentColor(Color.parseColor("#265cff"));
                     return  true;
 
                 }
@@ -148,7 +126,7 @@ public class MainActivity extends AppCompatActivity  {
         bottomNavigation.addItem(settingItem);
 
         //Set currect Item
-        bottomNavigation.setAccentColor(Color.parseColor("#04AEDA"));
+        bottomNavigation.setAccentColor(Color.parseColor("#ff8c00"));
         bottomNavigation.setCurrentItem(0);
 
         MainAppFragment home_fagment = new MainAppFragment();

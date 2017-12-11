@@ -48,7 +48,7 @@ public class BorrowThesisAdapter extends RecyclerView.Adapter<BorrowThesisAdapte
             holder.tv_status_borrow.setTextColor(Color.parseColor("#75be51"));
             txt_status_borrow = "อนุมัต";
         }else{
-            holder.tv_status_borrow.setTextColor(Color.parseColor("#ead300"));
+            holder.tv_status_borrow.setTextColor(Color.parseColor("#ffb41e"));
             txt_status_borrow = "รอการอนุมัต";
         }
         if(item.status_return!=null&&item.status_return.equalsIgnoreCase("1")) {

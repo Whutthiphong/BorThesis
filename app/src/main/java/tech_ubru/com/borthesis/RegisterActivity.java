@@ -2,8 +2,6 @@ package tech_ubru.com.borthesis;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -21,24 +19,22 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.kosalgeek.android.json.JsonConverter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import tech_ubru.com.borthesis.AppConfig.URLService;
-import tech_ubru.com.borthesis.ModelItem.Std_Item;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText et_std_id,et_conpassword,et_password,et_username;
-    boolean mem_status = true;// true = สมัครแล้ว false = ยังไม่สมัคร
+    boolean mem_status = false;// true = สมัครแล้ว false = ยังไม่สมัคร
     CheckBox cb_showpass;
     private String service_name="get_is_member.php";
+    private String service_name_register="post_register_member.php";
     private Button btn_register;
 
     @Override
@@ -85,9 +81,13 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     et_password.setTransformationMethod(null);
                     et_password.setSelection(et_password.getText().length());
+                    et_conpassword.setTransformationMethod(null);
+                    et_conpassword.setSelection(et_password.getText().length());
                 }else{
                     et_password.setTransformationMethod(new PasswordTransformationMethod());
                     et_password.setSelection(et_password.getText().length());
+                    et_conpassword.setTransformationMethod(new PasswordTransformationMethod());
+                    et_conpassword.setSelection(et_password.getText().length());
                 }
             }
         });
@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 JSONObject jsnobject2 = jsonArray_stat.getJSONObject(0);
                                 if(jsnobject2.getString("status")!=null&&jsnobject2.getString("status").length()>0){
-                                    if(jsnobject2.getString("status").equalsIgnoreCase("true")){
+                                    if(jsnobject2.getString("status").equalsIgnoreCase("registered")){
                                         new AlertDialog.Builder(RegisterActivity.this)
                                                 .setIcon(R.drawable.info)
                                                 .setMessage("รหัส นศ. นี้ได้สมัครไปแล้ว")
@@ -127,12 +127,27 @@ public class RegisterActivity extends AppCompatActivity {
                                                 })
                                                 .show();
 
-                                        mem_status = true;
-
-                                    }else{
                                         mem_status = false;
-                                    }
 
+                                    }else if(jsnobject2.getString("status").equalsIgnoreCase("false")){
+                                        new AlertDialog.Builder(RegisterActivity.this)
+                                                .setIcon(R.drawable.info)
+                                                .setMessage("รหัส นศ. นี้ไม่ได้อยู่ในระบบ")
+                                                .setTitle("แจ้งเตือน!!")
+                                                .setCancelable(false)
+                                                .setPositiveButton(R.string.dialog_text_btn_ok, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        dialogInterface.dismiss();
+                                                        et_std_id.requestFocus();
+                                                    }
+                                                })
+                                                .show();
+                                        mem_status = false;
+                                    }else if(jsnobject2.getString("status").equalsIgnoreCase("true")){
+                                        mem_status = true;
+                                    }
+                                    Log.e("can register = ",mem_status+"");
                                 }
 
 
@@ -163,10 +178,10 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!mem_status){
+                if(mem_status ==false){
                     new AlertDialog.Builder(RegisterActivity.this)
                             .setIcon(R.drawable.info)
-                            .setMessage("ไม่มีรหัส นศ. นี้ในระบบ")
+                            .setMessage("กรุณาตราจสอบรหัสนักศึกษา")
                             .setTitle("แจ้งเตือน!!")
                             .setCancelable(false)
                             .setPositiveButton(R.string.dialog_text_btn_ok, new DialogInterface.OnClickListener() {
@@ -174,6 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
                                     et_std_id.requestFocus();
+                                    et_std_id.setError("ตราจสอบรหัสนักศึกษา");
                                 }
                             })
                             .show();
@@ -210,16 +226,17 @@ public class RegisterActivity extends AppCompatActivity {
                                             pDialog.setCancelable(false);
                                             pDialog.setMessage("กำลังบันทึกข้อมูล...");
                                             pDialog.show();
-                                            StringRequest request = new StringRequest(Request.Method.POST, URLService.getUrl()+service_name, new Response.Listener<String>() {
+                                            StringRequest request = new StringRequest(Request.Method.POST, URLService.getUrl()+service_name_register, new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String response) {
                                                     try {
                                                         pDialog.dismiss();
-                                                        Log.e("response",response.toString());
+                                                        Log.e("register",response.toString());
+                                                        JSONArray jsonArray = new JSONArray(response.toString());
 
-                                                        JSONObject jsnobject2 = new JSONObject(response);
-                                                        if(jsnobject2.getString("status")!=null&&jsnobject2.getString("status").length()>0){
-                                                            if(jsnobject2.getString("status").equalsIgnoreCase("success")){
+                                                        JSONObject jsnobject2 = new JSONObject(jsonArray.get(0).toString());
+                                                        if(jsnobject2.getString("result")!=null&&jsnobject2.getString("result").length()>0){
+                                                            if(jsnobject2.getString("result").equalsIgnoreCase("success")){
                                                                 new AlertDialog.Builder(RegisterActivity.this)
                                                                         .setIcon(R.drawable.info)
                                                                         .setMessage("บันทึกข้อมูลเรียบร้อยแล้ว")
@@ -228,7 +245,9 @@ public class RegisterActivity extends AppCompatActivity {
                                                                         .setPositiveButton(R.string.dialog_text_btn_ok, new DialogInterface.OnClickListener() {
                                                                             @Override
                                                                             public void onClick(DialogInterface dialogInterface, int i) {
+
                                                                                 dialogInterface.dismiss();
+                                                                                finish();
                                                                             }
                                                                         })
                                                                         .show();
@@ -248,7 +267,6 @@ public class RegisterActivity extends AppCompatActivity {
                                                                             }
                                                                         })
                                                                         .show();
-                                                                mem_status = false;
                                                             }
 
                                                         }
@@ -274,6 +292,13 @@ public class RegisterActivity extends AppCompatActivity {
                                             };
 
                                             MySingleton.getInstance(RegisterActivity.this).addToRequestQueue(request);
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.dialog_text_btn_cancle, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+
                                         }
                                     })
                                     .show();

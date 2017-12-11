@@ -1,13 +1,15 @@
 package tech_ubru.com.borthesis;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -109,31 +111,60 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     try {
+                        Log.e("Res",response.toString());
+                        if(response.toString().equalsIgnoreCase("null")){
+                            new AlertDialog.Builder(LoginActivity.this)
+                                    .setMessage("Username หรือ Password ไม่ถูกต้อง")
+                                    .setTitle("แจ้งเตือน!!")
+                                    .setIcon(R.drawable.ic_info_black_24dp)
+                                    .setPositiveButton(R.string.dialog_text_btn_ok, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    }).show();
+                            return;
+                        }
                         JSONObject jsnobject = new JSONObject(response);
                         JSONArray jsonArray_stat = jsnobject.getJSONArray("result");
 
                         JSONObject jsnobject2 = jsonArray_stat.getJSONObject(0);
                         if(jsnobject2.getString("status")!=null&&jsnobject2.getString("status").length()>0){
                             editor.putString("LOGIN_STAT",jsnobject2.getString("status"));
-                            editor.commit();
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            finish();
-                            startActivity(intent);
+
+
                         }
                         if(jsnobject.getJSONArray("detail")!=null&&jsnobject.getJSONArray("detail").length()>0) {
 
                             ArrayList<Std_Item> lis_std_detail =new  JsonConverter<Std_Item>().toArrayList(jsnobject.getJSONArray("detail").toString(),Std_Item.class);
                             Std_Item item = lis_std_detail.get(0);
+                            if(item.status_register.equalsIgnoreCase("1")){
 
-                            editor.putString("pk_mem",item.pk_mem);
-                            editor.putString("prefix_mem",item.prefix_mem);
-                            editor.putString("email_mem",item.email_mem);
-                            editor.putString("name_mem",item.name_mem);
-                            editor.putString("lastname_mem",item.lastname_mem);
-                            editor.commit();
+                                editor.putString("pimerykey",item.pimerykey);
+                                editor.putString("prefix",item.prefix);
+                                editor.putString("email",item.email);
+                                editor.putString("id_student",item.id_student);
+                                editor.putString("name",item.name);
+                                editor.putString("lastname",item.lastname);
+                                editor.commit();
+                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                finish();
+                                startActivity(intent);
+                            }else {
+                                new AlertDialog.Builder(LoginActivity.this)
+                                        .setMessage("Username นี้ยังไม่ได้สมัครสมาชิก")
+                                        .setTitle("แจ้งเตือน!!")
+                                        .setIcon(R.drawable.ic_info_black_24dp)
+                                        .setPositiveButton(R.string.dialog_text_btn_ok, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                dialogInterface.dismiss();
+                                            }
+                                }).show();
+                            }
+
+
                         }
-
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -149,8 +180,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> param = new HashMap<String, String>();
-                    param.put("username_mem",params[0] );
-                    param.put("password_mem",params[1] );
+                    param.put("username",params[0] );
+                    param.put("password",params[1] );
                     return param;
                 }
             };
