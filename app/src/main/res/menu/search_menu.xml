@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_filter"
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="@string/menu_filter"
         android:orderInCategory="100"
