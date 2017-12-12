@@ -85,7 +85,10 @@ public class SearchThesisFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText.trim());
+                if(adapter!=null) {
+                    if(adapter.getFilter()!=null)
+                    adapter.getFilter().filter(newText.trim());
+                }
                 return false;
             }
         });

@@ -33,7 +33,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     public void handleResult(Result result) {
-        Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
         finish();
         Intent intent = new Intent(ScannerActivity.this, ThesisDetail.class);
         intent.putExtra("qrcode", result.getText().trim());

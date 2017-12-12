@@ -106,23 +106,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/button4"
-                    style="@style/btn_menu_usersetting"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="เปลี่ยนรหัสผ่าน"
-                    android:textAllCaps="false"
-                    android:drawableLeft="@drawable/ic_swap"
-                    android:gravity="center_vertical"
-                    android:drawablePadding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                 <Button
                     android:id="@+id/btn_logout"
@@ -131,14 +114,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="3dp"
-                    android:text="ออกจากระบบ"
-                    android:gravity="center_vertical"
-                    android:drawablePadding="10dp"
+                    android:layout_marginTop="8dp"
                     android:drawableLeft="@drawable/ic_exit"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="ออกจากระบบ"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button4" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
             </android.support.constraint.ConstraintLayout>
         <!--</LinearLayout>-->
