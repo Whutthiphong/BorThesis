@@ -32,7 +32,7 @@ public class MainAppFragment extends Fragment    {
         btn_scanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
                 startActivity(new Intent(getContext(), ScannerActivity.class));
             }
         });
