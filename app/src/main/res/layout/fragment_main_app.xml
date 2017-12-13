@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@android:color/white"
-    tools:context="tech_ubru.com.borthesis.MyFragments.MainAppFragment">
+
+    tools:context="tech_ubru.com.borthesis.MyFragments.MainAppFragment"
+    tools:layout_editor_absoluteY="81dp">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -16,6 +17,8 @@ android:background="@android:color/white"
         android:layout_marginTop="8dp"
         android:background="#ff8c00"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
@@ -23,12 +26,12 @@ android:background="@android:color/white"
             style="@style/btn_outline_style_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:drawableLeft="@drawable/qr100"
 
+            android:drawableLeft="@drawable/qr100"
             android:padding="20dp"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,20 +41,19 @@ android:background="@android:color/white"
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginBottom="24dp"
             android:layout_marginEnd="8dp"
+
             android:layout_marginStart="8dp"
             android:text="ค้นหา Thesis ด้าย QR CODE"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    </android.support.constraint.ConstraintLayout>
-
+</android.support.constraint.ConstraintLayout>
 
 

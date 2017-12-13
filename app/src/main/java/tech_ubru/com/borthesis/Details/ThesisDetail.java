@@ -7,9 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,6 +62,7 @@ public class ThesisDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thesis_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sp = getSharedPreferences(ConfigData.USER_TAG_SHARE, Context.MODE_PRIVATE);
         editor = sp.edit();
         tv_detail_th_name = findViewById(R.id.tv_detail_th_name);
@@ -280,7 +281,12 @@ public class ThesisDetail extends AppCompatActivity {
         });
 
 }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
 
+        return true;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
