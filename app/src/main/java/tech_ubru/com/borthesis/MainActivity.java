@@ -1,24 +1,18 @@
 package tech_ubru.com.borthesis;
 
 import android.app.ActionBar;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.kosalgeek.android.json.JsonConverter;
-
-import java.util.ArrayList;
 
 import tech_ubru.com.borthesis.AppConfig.ConfigData;
-import tech_ubru.com.borthesis.ModelItem.GET_ALL_BOOK;
 import tech_ubru.com.borthesis.MyFragments.BorrowThesisTransectionFragment;
 import tech_ubru.com.borthesis.MyFragments.MainAppFragment;
 import tech_ubru.com.borthesis.MyFragments.SearchThesisFragment;
@@ -34,7 +28,6 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String service_name = "get_all_book_detail.php";
         bottomNavigation =  findViewById(R.id.myNavigation_ID);
 
 
@@ -81,35 +74,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-
-
-    private  class test_volle extends AsyncTask<Void,Void,String>{
-        ProgressDialog dialog ;
-        private String response_new;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog = new ProgressDialog(MainActivity.this);
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("Loading...");
-            dialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(String response) {
-            super.onPostExecute(response);
-            ArrayList<GET_ALL_BOOK> list_book = new JsonConverter<GET_ALL_BOOK>().toArrayList(response,GET_ALL_BOOK.class);
-
-            dialog.dismiss();
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-
-            return response_new;
-        }
-    }
 
     private void createNavItem(){
         //Create Item
